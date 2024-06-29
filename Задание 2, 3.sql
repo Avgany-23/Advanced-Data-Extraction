@@ -28,7 +28,7 @@ WHERE NOT nickname LIKE '% %'
 -- Через регулярки
 SELECT *
 FROM  Songs
-WHERE LOWER(name_song) ~* '\s(my|мой)\s|^(my|мой)\s|\s(my|мой)$'
+WHERE LOWER(name_song) ~* '\s(my|мой)\s|^(my|мой)\s|\s(my|мой)$|(мой|my)'
 -- Череле ILIKE 
 SELECT *
 FROM  Songs
