@@ -25,9 +25,25 @@ WHERE NOT nickname LIKE '% %'
 
 	
 -- 5.Название треков, которые содержат слово «мой» или «my».
+-- Через регулярки
 SELECT *
 FROM  Songs
-WHERE STRPOS(LOWER(name_song), 'мой') > 0 OR STRPOS(LOWER(name_song), 'my') > 0
+WHERE LOWER(name_song) ~* '\s(my|мой)\s|^(my|мой)\s|\s(my|мой)$'
+-- Череле ILIKE 
+SELECT *
+FROM  Songs
+WHERE name_song ILIKE 'my%'
+OR name_song ILIKE '%my%'
+OR name_song ILIKE '%my'
+OR name_song ILIKE 'my'
+OR name_song ILIKE 'мой%'
+OR name_song ILIKE '%мой%'
+OR name_song ILIKE '%мой'
+OR name_song ILIKE 'мой'
+-- Через string_to_array 
+SELECT *
+FROM  Songs
+WHERE string_to_array(LOWER(name_song), ' ') && ARRAY ['мой', 'my']
 
 
 -- ЗАДАНИЕ 3
